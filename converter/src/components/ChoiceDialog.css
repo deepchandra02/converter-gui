@@ -1,0 +1,90 @@
+.choice-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.choice-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.choice-card h2 {
+  margin: 0 0 1rem 0;
+  color: #374151;
+}
+
+.instruction-text {
+  color: #6b7280;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.instruction-text code {
+  background: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  color: #374151;
+}
+
+.choice-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.choice-button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 200px;
+}
+
+.choice-button:hover {
+  border-color: #667eea;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+  transform: translateY(-2px);
+}
+
+.button-icon {
+  font-size: 2rem;
+}
+
+.button-content {
+  text-align: left;
+}
+
+.button-content h3 {
+  margin: 0 0 0.5rem 0;
+  color: #374151;
+  font-size: 1.2rem;
+}
+
+.button-content p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .choice-buttons {
+    flex-direction: column;
+  }
+
+  .choice-button {
+    min-width: auto;
+  }
+}
