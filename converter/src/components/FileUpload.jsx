@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react'
-import './FileUpload.css'
 
 function FileUpload({ mode, onUpload, onBack }) {
   const [selectedFiles, setSelectedFiles] = useState([])
@@ -80,38 +79,42 @@ function FileUpload({ mode, onUpload, onBack }) {
   }
 
   return (
-    <div className="file-upload">
-      <div className="upload-card">
-        <h2>Upload PDF Files</h2>
-        <p className="mode-indicator">
-          Mode: <strong>{mode === 'batch' ? 'Batch Processing' : 'Single File'}</strong>
+    <div className="w-full max-w-4xl mx-auto">
+      <div className="bg-white rounded-xl shadow-2xl p-8 m-4">
+        <h2 className="text-2xl font-bold text-black mb-2">Upload PDF Files</h2>
+        <p className="text-black mb-6">
+          Mode: <strong className="text-primary-600">{mode === 'batch' ? 'Batch Processing' : 'Single File'}</strong>
         </p>
 
         <div
-          className={`drop-zone ${dragOver ? 'drag-over' : ''} ${selectedFiles.length > 0 ? 'has-files' : ''}`}
+          className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all duration-200 ${
+            dragOver
+              ? 'border-primary-500 bg-primary-50'
+              : selectedFiles.length > 0
+                ? 'border-green-400 bg-green-50'
+                : 'border-gray-300 hover:border-primary-400 hover:bg-gray-50'
+          }`}
           onDrop={handleDrop}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onClick={() => fileInputRef.current?.click()}
         >
-          <div className="drop-zone-content">
-            <div className="upload-icon">📁</div>
-            <h3>
-              {selectedFiles.length > 0
-                ? `${selectedFiles.length} file${selectedFiles.length > 1 ? 's' : ''} selected`
-                : 'Drop PDF files here or click to browse'
-              }
-            </h3>
-            <p>
-              {mode === 'batch'
-                ? 'Select multiple PDF files for batch processing'
-                : 'Select a single PDF file'
-              }
-            </p>
-            <p className="file-requirements">
-              <strong>Requirements:</strong> Files must be named like ABIC_en.pdf (4 letters + optional characters)
-            </p>
-          </div>
+          <div className="text-6xl mb-4">📁</div>
+          <h3 className="text-xl font-semibold text-black mb-2">
+            {selectedFiles.length > 0
+              ? `${selectedFiles.length} file${selectedFiles.length > 1 ? 's' : ''} selected`
+              : 'Drop PDF files here or click to browse'
+            }
+          </h3>
+          <p className="text-gray-600 mb-4">
+            {mode === 'batch'
+              ? 'Select multiple PDF files for batch processing'
+              : 'Select a single PDF file'
+            }
+          </p>
+          <p className="text-sm text-gray-500">
+            <strong>Requirements:</strong> Files must be named like ABIC_en.pdf (4 letters + optional characters)
+          </p>
         </div>
 
         <input
@@ -124,25 +127,28 @@ function FileUpload({ mode, onUpload, onBack }) {
         />
 
         {selectedFiles.length > 0 && (
-          <div className="selected-files">
-            <h4>Selected Files:</h4>
-            <ul>
+          <div className="mt-6">
+            <h4 className="text-lg font-semibold text-black mb-3">Selected Files:</h4>
+            <ul className="space-y-2 max-h-48 overflow-y-auto">
               {selectedFiles.map((file, index) => (
-                <li key={index} className="file-item">
-                  <span className="file-name">{file.name}</span>
-                  <span className="file-size">{formatFileSize(file.size)}</span>
+                <li key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                  <span className="font-medium text-black">{file.name}</span>
+                  <span className="text-sm text-gray-500">{formatFileSize(file.size)}</span>
                 </li>
               ))}
             </ul>
           </div>
         )}
 
-        <div className="upload-actions">
-          <button className="back-button" onClick={onBack}>
+        <div className="flex justify-between mt-8">
+          <button
+            className="px-6 py-3 bg-gray-200 text-black text-base font-semibold rounded-md transition-colors hover:bg-gray-300"
+            onClick={onBack}
+          >
             Back
           </button>
           <button
-            className="upload-button"
+            className="px-6 py-3 bg-primary-500 text-white text-base font-semibold rounded-md transition-all duration-200 hover:bg-primary-600 hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
             onClick={handleUpload}
             disabled={selectedFiles.length === 0}
           >

@@ -5,7 +5,6 @@ import ChoiceDialog from './components/ChoiceDialog'
 import FileUpload from './components/FileUpload'
 import ConversionProgress from './components/ConversionProgress'
 import Results from './components/Results'
-import './App.css'
 
 const API_BASE_URL = 'http://localhost:5001/api'
 
@@ -92,13 +91,13 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <header className="app-header">
-        <h1>PDF to AF Converter</h1>
-        <p>Convert PDF forms to Adobe Experience Manager Adaptive Forms</p>
+    <div className="min-h-screen bg-white font-sans">
+      <header className="text-center py-8 bg-primary-500 text-white">
+        <h1 className="m-0 text-4xl font-bold">PDF to AF Converter</h1>
+        <p className="mt-2 mb-0 text-lg opacity-90">Convert PDF forms to Adobe Experience Manager Adaptive Forms</p>
       </header>
 
-      <main className="app-main">
+      <main className="flex justify-center items-start min-h-[calc(100vh-200px)] p-4 bg-gray-50">
         {currentStep === 'config' && (
           <ConfigDialog onSave={handleConfigSave} />
         )}
